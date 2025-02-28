@@ -7,8 +7,7 @@ const multer = require('multer');
 const upload = multer({ storage: multer.memoryStorage() });
 const path = require('path');
 
-const _dirname = path.dirname("")
-const buildPath = path.join(_dirname, "../dist")
+const buildPath = path.join(__dirname, "../dist");
 
 // Serve static files from the React app
 app.use(express.static(buildPath));
@@ -86,7 +85,7 @@ app.delete('/api/delete', async (req, res) => {
 
 // Handles any requests that don't match the ones above
 app.get('*', (req, res) => {
-  res.sendFile(path.join(buildPath, 'index.html'));
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
 app.listen(port, () => {
