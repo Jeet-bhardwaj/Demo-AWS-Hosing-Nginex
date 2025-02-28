@@ -1,0 +1,16 @@
+.homeContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.section {
+    width: 100%;
+}
+
+/* Remove padding for Google Reviews section specifically */
+.section:nth-child(4) {
+    padding: 0;
+}

@@ -1,0 +1,123 @@
+.topBar {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 0.5rem 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.visible {
+    transform: translateY(0);
+}
+
+.hidden {
+    transform: translateY(-100%);
+}
+
+.container {
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 1rem;
+}
+
+.leftSection {
+    display: flex;
+    gap: 2rem;
+    justify-content: flex-start;
+}
+
+.centerSection {
+    text-align: center;
+}
+
+.rightSection {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.contactInfo {
+    display: flex;
+    gap: 2rem;
+}
+
+.contactItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #FFD700;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.contactItem:hover {
+    color: #FFD700;
+}
+
+.socialLinks {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.socialLinks a {
+    color: #FFD700;
+    font-size: 1.2rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.socialLinks a:hover {
+    color: #FFD700;
+    transform: translateY(-2px);
+}
+
+.welcomeText {
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .topBar {
+        display: block; /* Show the TopBar on mobile */
+        padding: 0.3rem 0;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    .leftSection {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .leftSection a[href^="mailto"] {
+        display: none; /* Hide email on mobile */
+    }
+
+    .centerSection {
+        order: -1;
+    }
+
+    .rightSection {
+        display: none; /* Hide social links on mobile */
+    }
+}
+
+.page-slider .slick-slide img {
+    height: auto;
+    width: 100%;
+    object-fit: contain !important;
+    position: relative;
+} 
