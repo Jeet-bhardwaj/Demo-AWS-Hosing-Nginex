@@ -2,18 +2,25 @@ const express = require('express');
 const cloudinary = require('cloudinary').v2;
 const cors = require('cors'); // Add CORS to prevent frontend issues
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 const multer = require('multer');
 const upload = multer({ storage: multer.memoryStorage() });
+const path = require('path');
+
+const _dirname = path.dirname("")
+const buildPath = path.join(_dirname, "../dist")
+
+// Serve static files from the React app
+app.use(express.static(buildPath));
 
 // Middleware
 app.use(cors()); // Allow frontend to access API
 
 // Configure Cloudinary
 cloudinary.config({
-  cloud_name: 'dtnakrubh',
-  api_key: '553596293654989',
-  api_secret: '-T0AdHZ3guFzYDfcJoZCcNfoyB4'
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME || 'dtnakrubh',
+  api_key: process.env.CLOUDINARY_API_KEY || '553596293654989',
+  api_secret: process.env.CLOUDINARY_API_SECRET || '-T0AdHZ3guFzYDfcJoZCcNfoyB4'
 });
 
 // Endpoint to fetch images from the 'fitness-platinum' folder in Cloudinary
@@ -77,8 +84,9 @@ app.delete('/api/delete', async (req, res) => {
   }
 });
 
-app.get('/', (req, res) => {
-  res.send('hello world');
+// Handles any requests that don't match the ones above
+app.get('*', (req, res) => {
+  res.sendFile(path.join(buildPath, 'index.html'));
 });
 
 app.listen(port, () => {

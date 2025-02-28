@@ -6,6 +6,9 @@ import tailwind from '@tailwindcss/vite';
 export default defineConfig({
   plugins: [react(), tailwind()],
   server: {
+    proxy: {
+      '/api': 'http://localhost:5000'
+    },
     allowedHosts: [
       'ngrok-free.app',
       'ngrok.io',
@@ -14,6 +17,10 @@ export default defineConfig({
       'localhost',
       '127.0.0.1'
     ]
+  },
+  build: {
+    outDir: 'dist',
+    emptyOutDir: true
   },
   optimizeDeps: {
     exclude: ['lucide-react'],
